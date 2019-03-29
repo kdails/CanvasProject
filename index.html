@@ -6,32 +6,34 @@
 	<meta name = 'viewport' content='width=device-width, initial-scale=1, minimum-scale=1'>
 	<style> /* Bad practice for style in html*/
 	canvas {
-				border: 14px solid pink;
-				background-color: mistyrose;
+		border: 14px solid pink;
+		background-color: mistyrose;
 			}
-
+	/* want everything to be 100% before changing the canvas size depending on it */
 	body, html {
 		width: 100%;
 		height: 100%;
 		background-color: cornflowerblue;
 	}
-/* media queries for mobile screen response */
+/* media queries for mobile screen response size  */
 	@media screen and (max-width:700px) {
 	}
 	</style>
 </head>
 <body>
-
+// initializing the canvas and giving it an ID of canvas 
 	<canvas id="canvas">
 		This canvas has automatic pen in red on a peach drawing canvas !
 	</canvas>
 	<input type="color" id="colorPicker">
 	<script> // Javascript goes in here !!!!
 		var canvas = document.querySelector('canvas');
+		//this is a two-dimensional plane!
 		var ctx = canvas.getContext('2d');
 		var x = 0;
 		var y = 0;
 		var radius = 15;
+		// always set to red to start
 		var color = 'red'
 		function draw() {
 			ctx.beginPath();
