@@ -91,7 +91,10 @@
 			draw();
 		});
 
-
+		// added color picker
+		document.querySelector("#colorPicker").addEventListener('change', function(ev){
+		color = ev.target.value;
+		})
 	</script>
 
 </body>
