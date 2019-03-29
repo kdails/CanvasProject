@@ -90,7 +90,7 @@
 			y = startY;
 			draw();
 		});
-		
+		// resetting canvas for every orientation change -- like shifting phone screen direction.
 		window.addEventListener("orientationchange", function(ev)
 		{
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
