@@ -82,7 +82,7 @@
 			}
 			draw()
 		})
-
+// this is for mobile responsiveness! The touches is a list of finger touch locations both x and y
 		canvas.addEventListener("touchmove", function(ev) {
 			var startX = ev.touches[0].pageX;
 			var startY = ev.touches[0].pageY;
@@ -96,7 +96,7 @@
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 		}
 			)
-		// added color picker
+		// added color picker --- doesn't work in mobile?
 		document.querySelector("#colorPicker").addEventListener('change', function(ev){
 		color = ev.target.value;
 		})
