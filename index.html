@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Drawing on a Canvas !</title>
+	<meta name = 'viewport' content='width=device-width, initial-scale=1, minimum-scale=1'>
+	<style> /* Bad practice for style in html*/
+	canvas {
+				border: 4px solid pink;
+				background-color: peachpuff;
+			}
+
+	body, html {
+		width: 100%;
+		height: 100%;
+		background-color: cornflowerblue;
+	}
+/* media queries for mobile screen response */
+	@media screen and (max-width:700px) {
+	}
+	</style>
+</head>
+<body>
+
+	<canvas id="canvas">
+		This canvas has automatic pen in red on a peach drawing canvas !
+	</canvas>
+	<input type="color" id="colorPicker">
+	<script> // Javascript goes in here !!!!
+		var canvas = document.querySelector('canvas');
+		var ctx = canvas.getContext('2d');
+		var x = 0;
+		var y = 0;
+		var radius = 15;
+		var color = 'red'
+		function draw() {
+			ctx.beginPath();
+			ctx.fillStyle = color;
+			ctx.arc(x, y, radius, 0, 2*Math.PI);
+			ctx.fill();
+		}
+		//listener for mouse movement across canvas ( also drawing circle at mouse location)
+		window.addEventListener('mousemove', function(ev) {
+			console.log(ev.pageX);
+			console.log(ev.pageY);
+			x = ev.pageX;
+			y = ev.pageY;
+			draw()
+		})
+
+		//This makes the canvas width 80% of the window!
+		function sizingCanvas() {
+			canvas.width = window.innerWidth * 0.8;
+			canvas.height = window.innerHeight * 0.8;
+		}
+		window.addEventListener('resize', sizingCanvas); //when user re-sizes the window in browser, adapt for new width
+		window.addEventListener('load', sizingCanvas); //on load, resize the window and adapt for new width
+
+		window.addEventListener('keydown', function(ev){
+			console.log(ev.keyCode)
+			if (ev.keyCode === 66) { // key for letter b
+				color = "blue";}
+			if (ev.keyCode === 89) { // key code for letter y
+				color = "yellow";
+			}
+			if (ev.keyCode === 71) { // key code for letter g
+				color = "green";
+			}
+			if (ev.keyCode === 82) { // key code for letter r
+				color = 'red';
+			}
+			if (ev.keyCode === 38) { // key code for + key increases current radius by 5
+				radius += 5;
+			}
+			if (ev.keyCode === 40) { // key code for - key decreases current radius by 5 ( 6 stops it getting less than 5)
+				if (radius >= 6) {
+					radius -= 5;
+				}
+			}
+			if (ev.keyCode === 32) {
+				ctx.clearRect(0, 0, canvas.width, canvas.height); // clear canvas with space bar
+			}
+			draw()
+		})
+
+		canvas.addEventListener("touchmove", function(ev) {
+			var startX = ev.touches[0].pageX;
+			var startY = ev.touches[0].pageY;
+			x = startX;
+			y = startY;
+			draw();
+		});
+
+
+	</script>
+
+</body>
+</html>
